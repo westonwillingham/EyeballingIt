@@ -4,6 +4,7 @@ import torch.nn as nn
 import pandas as pd
 import numpy as np
 from utils import TextProcess
+import librosa
 
 # NOTE: add time stretch
 class SpecAugment(nn.Module):
@@ -105,7 +106,7 @@ class Data(torch.utils.data.Dataset):
 
         try:
             file_path = self.data.key.iloc[idx]
-            waveform, _ = torchaudio.load(file_path)
+            waveform, _ = librosa.load(file_path, mono = True)
             label = self.text_process.text_to_int_sequence(self.data['text'].iloc[idx].lower())
             spectrogram = self.audio_transforms(waveform) # (channel, feature, time)
             spec_len = spectrogram.shape[-1] // 2
