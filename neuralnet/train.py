@@ -26,12 +26,11 @@ class SpeechModule(LightningModule):
         return self.model(x, hidden)
 
     def configure_optimizers(self):
-        self.metric = "accuracy"
         self.optimizer = optim.AdamW(self.model.parameters(), self.args.learning_rate)
         self.scheduler = optim.lr_scheduler.ReduceLROnPlateau(
                                        self.optimizer, mode='min',
-                                       factor=0.50, patience=6)
-        return [self.optimizer], [self.scheduler], [self.metric]
+                                       factor=0.50, patience=6, metric = 'accuracy')
+        return [self.optimizer], [self.scheduler]
 
     def step(self, batch):
         spectrograms, labels, input_lengths, label_lengths = batch 
