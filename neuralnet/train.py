@@ -26,7 +26,7 @@ class SpeechModule(LightningModule):
         return self.model(x, hidden)
 
     def configure_optimizers(self):
-        self.optimizer = optim.AdamW(self.model.parameters(), self.args.learning_rate, , metric = 'accuracy') 
+        self.optimizer = optim.AdamW(self.model.parameters(), self.args.learning_rate, metric = 'accuracy') 
         self.scheduler = optim.lr_scheduler.ReduceLROnPlateau(
                                        self.optimizer, mode='min',
                                        factor=0.50, patience=6)
