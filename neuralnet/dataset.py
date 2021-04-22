@@ -3,7 +3,7 @@ import torchaudio
 import torch.nn as nn
 import pandas as pd
 import numpy as np
-from neuralnet.utils import TextProcess
+from utils import TextProcess
 
 # NOTE: add time stretch
 class SpecAugment(nn.Module):
