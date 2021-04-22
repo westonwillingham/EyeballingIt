@@ -44,7 +44,11 @@ class TextProcess:
 	def text_to_int_sequence(self, text):
 		""" Use a character map and convert text to an integer sequence """
 		int_sequence = []
-		for c in text.strip():
+		punc = '''!()-[]{};:'"\, <>./?@#$%^&*_~''' 
+		for ele in text: 
+			if ele in punc: 
+				text = text.replace(ele, "") 
+		for c in text:
 			if c == ' ':
 				ch = self.char_map['<SPACE>']
 			else:
