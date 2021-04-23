@@ -73,7 +73,7 @@ class SpeechModule(LightningModule):
         test_dataset = Data(json_path=self.args.valid_file, **d_params, valid=True)
         return DataLoader(dataset=test_dataset,
                             batch_size=self.args.batch_size,
-                            num_workers=self.args.data_workers,
+                            num_workers=16, #num_workers=self.args.data_workers, 
                             collate_fn=collate_fn_padd,
                             pin_memory=True)
 
