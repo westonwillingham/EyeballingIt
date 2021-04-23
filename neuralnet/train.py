@@ -65,7 +65,7 @@ class SpeechModule(LightningModule):
 
     def validation_epoch_end(self, outputs):
         avg_loss = torch.stack([x['val_loss'] for x in outputs]).mean()
-        self.scheduler.step(avg_loss)
+        #self.scheduler.step(avg_loss)
         tensorboard_logs = {'val_loss': avg_loss}
         return {'val_loss': avg_loss, 'log': tensorboard_logs}
 
