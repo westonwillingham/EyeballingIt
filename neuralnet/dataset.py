@@ -106,7 +106,7 @@ class Data(torch.utils.data.Dataset):
 
         try:
             file_path = self.data.key.iloc[idx]
-            waveform, _ = librosa.load(file_path, mono = True)
+            waveform, _ = torchaudio.load(file_path)
             label = self.text_process.text_to_int_sequence(self.data['text'].iloc[idx].lower())
             spectrogram = self.audio_transforms(waveform) # (channel, feature, time)
             spec_len = spectrogram.shape[-1] // 2
