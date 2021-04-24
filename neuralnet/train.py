@@ -107,7 +107,7 @@ def main(args):
         max_epochs=args.epochs, gpus=args.gpus,
         num_nodes=args.nodes, distributed_backend=None,
         logger=logger, gradient_clip_val=1.0,
-        val_check_interval=args.valid_every,
+        val_check_interval=16,   #args.valid_every,
         checkpoint_callback=checkpoint_callback(args),
         resume_from_checkpoint=args.resume_from_checkpoint
     )
